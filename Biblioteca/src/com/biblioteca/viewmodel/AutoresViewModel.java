@@ -52,5 +52,13 @@ public class AutoresViewModel {
 		}
 		return;
 	}
+	
+	public void deleteAutor(Integer id) {
+		
+	}
+	
+	public void updateAutor(Autor autor) {
+		
+	}
 
 }
