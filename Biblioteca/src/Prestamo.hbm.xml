@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/09/2017 18:43:08 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.biblioteca.model.Prestamo" table="PRESTAMO">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="increment" />
+        </id>
+        <property name="fechaPrestamo" type="java.time.LocalDate">
+            <column name="FECHAPRESTAMO" />
+        </property>
+        <property name="fechaDevolucion" type="java.time.LocalDate">
+            <column name="FECHADEVOLUCION" />
+        </property>
+        <many-to-one name="cliente" class="com.biblioteca.model.Cliente" lazy="false">
+        	<column name="CLIENTE_ID" />
+        </many-to-one>
+        <many-to-one name="copia" class="com.biblioteca.model.Copia" fetch="join" lazy="false">
+            <column name="COPIA" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

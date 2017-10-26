@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/09/2017 19:03:12 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.biblioteca.model.Libro" table="LIBRO">
+    	<id name="id" type="java.lang.Integer">
+    		<column name="ID" />
+    		<generator class="increment"></generator>
+    	</id>
+        <property name="nombre" type="java.lang.String">
+            <column name="NOMBRE" />
+        </property>
+        <property name="tipo">
+            <column name="TIPO" />
+            <type name="org.hibernate.type.EnumType">
+                <param name="type">12</param>
+                <param name="enumClass">com.biblioteca.model.TipoLibro</param>
+            </type>
+        </property>
+        <property name="editorial" type="java.lang.String">
+            <column name="EDITORIAL" />
+        </property>
+        <property name="anio" type="int">
+            <column name="ANIO" />
+        </property>
+        <many-to-one name="autor" class="com.biblioteca.model.Autor" fetch="join" lazy="false" not-found="ignore">
+            <column name="AUTOR" />
+        </many-to-one>
+        <list name="copias" inverse="false" table="COPIA" lazy="false" cascade="all, delete-orphan">
+            <key>
+                <column name="LIBRO_ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="com.biblioteca.model.Copia" />
+        </list>
+    </class>
+</hibernate-mapping>
